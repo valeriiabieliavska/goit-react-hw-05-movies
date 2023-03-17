@@ -1,4 +1,4 @@
-import { getMovieReviews } from "services/api";
+// import { getMovieReviews } from "services/api";
 
 
 export const Reviews = () => {

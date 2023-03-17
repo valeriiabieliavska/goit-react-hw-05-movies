@@ -1,5 +1,5 @@
-import { getMovieCast } from "services/api";
-import { useState, useEffect } from "react";
+// import { getMovieCast } from "services/api";
+// import { useState, useEffect } from "react";
 
 
 export const Cast = () => {
