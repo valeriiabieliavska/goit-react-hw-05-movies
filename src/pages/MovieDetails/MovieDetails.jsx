@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { getMovieDetails } from 'services/api';
 import { BASE_IMG_URL } from 'services/constants';
 
-export const MovieDetails = () => {
+const MovieDetails = () => {
   const [details, setDetails] = useState(null);
   const location = useLocation();
   const navigate = useNavigate();
@@ -38,3 +38,5 @@ export const MovieDetails = () => {
     </div>
   );
 };
+
+export default MovieDetails;
