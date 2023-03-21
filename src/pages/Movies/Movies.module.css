@@ -1,0 +1,35 @@
+.formMovies {
+  margin-left: 450px;
+
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.inputMovies {
+  padding: 10px;
+  width: 300px;
+  margin-right: 20px;
+  outline: none;
+  border-radius: 10px;
+  color: black;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+}
+
+.buttonMovies {
+  padding: 10px;
+  width: 150px;
+  border-radius: 10px;
+  color: whitesmoke;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  background-color: #221f1f;
+}
+
+.buttonMovies:hover,
+.buttonMovies:focus {
+  color: black;
+  background-color: whitesmoke;
+}

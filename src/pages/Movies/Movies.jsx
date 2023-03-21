@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { getMoviesByQuery } from 'services/api';
 import { Loader } from 'components/Loader/Loader';
+import css from './Movies.module.css';
+import toast, { Toaster } from 'react-hot-toast';
 
 const Movies = () => {
   const [query, setQuery] = useState('');
@@ -15,8 +17,13 @@ const Movies = () => {
     if (!searchQuery) {
       return;
     }
+    setIsLoading(true);
     getMoviesByQuery(searchQuery)
       .then(setMovies)
+      .catch(error => {
+        toast.error('Error fetching movies!');
+        console.error(error);
+      })
       .finally(() => {
         setIsLoading(false);
         setQuery(searchQuery);
@@ -35,13 +42,21 @@ const Movies = () => {
 
   return (
     <div>
-      {isLoading && <Loader />}
-      <h1>Movies</h1>
-      <form onSubmit={handleSubmit}>
-        <input type="text" name="query" value={query} onChange={handleChange} />
-        <button type="submit">Search</button>
+      <form onSubmit={handleSubmit} className={css.formMovies}>
+        <input
+          className={css.inputMovies}
+          type="text"
+          name="query"
+          value={query}
+          onChange={handleChange}
+        />
+        <button className={css.buttonMovies} type="submit">
+          Search
+        </button>
       </form>
+      {isLoading && <Loader />}
       <MoviesList movies={movies} />
+      <Toaster />
     </div>
   );
 };

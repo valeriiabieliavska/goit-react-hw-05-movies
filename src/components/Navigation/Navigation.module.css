@@ -1,0 +1,42 @@
+.navigation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #221f1f;
+  padding: 20px;
+}
+
+.navHome {
+  margin-right: 40px;
+  color: whitesmoke;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  font-size: 36px;
+  text-decoration: none;
+}
+
+/* .navHome:active,
+.navHome:focus {
+  color: #221f1f;
+  border: 4px solid;
+  border-radius: 10px;
+  background: whitesmoke;
+} */
+
+.navMovie {
+  margin-right: 40px;
+  color: whitesmoke;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  font-size: 36px;
+  text-decoration: none;
+}
+
+
+/* .navMovie:active,
+.navMovie:focus {
+  color: #221f1f;
+  border: 4px solid;
+  border-radius: 10px;
+  background: whitesmoke;
+} */

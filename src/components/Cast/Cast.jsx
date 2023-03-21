@@ -3,6 +3,10 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { BASE_IMG_URL } from 'services/constants';
 import { Loader } from 'components/Loader/Loader';
+import placeholder from '../../image/placeholder2.jpg';
+import css from './Cast.module.css';
+import toast, { Toaster } from 'react-hot-toast';
+
 const Cast = () => {
   const [cast, setCast] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -16,7 +20,7 @@ const Cast = () => {
         setCast(movieCast);
       } catch (error) {
         console.log(error);
-        error(`Sorry, ${error.message}! Try again)`);
+        toast.error(`Sorry, ${error.message}! Try again)`);
       } finally {
         setIsLoading(false);
       }
@@ -26,36 +30,28 @@ const Cast = () => {
 
   return (
     <div>
-      <h2>Cast</h2>
       {isLoading ? (
         <Loader />
       ) : (
-        <ul>
+        <ul className={css.castList}>
           {cast.map(({ order, profile_path, name, character }) => (
-            <li key={order}>
-              <img src={BASE_IMG_URL + profile_path} alt={name} />
-              <p> {name}</p>
-              <p>Character: {character}</p>
+            <li className={css.castItem} key={order}>
+              <img className={css.castImg}
+                src={profile_path ? BASE_IMG_URL + profile_path : placeholder}
+                alt={name}
+                width="200"
+              />
+              <p className={css.castDesc}>
+                {' '}
+                {name} {character && <span>in the role {character}</span>}
+              </p>
             </li>
           ))}
         </ul>
       )}
+        <Toaster />
     </div>
   );
 };
 
 export default Cast;
-
-// {/* <h1>Cast</h1>
-// {isLoading ? (
-//   <Loader />
-// ) : (
-//   <ul>
-//     {cast.map(person => (
-//       <li key={person.id}>
-//         <img src={BASE_IMG_URL + person.profile_path} alt={person.name} />
-//         <p>{person.name}</p>
-//       </li>
-//     ))}
-//   </ul>
-// )} */}

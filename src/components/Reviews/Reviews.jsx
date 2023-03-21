@@ -2,6 +2,8 @@ import { getMovieReviews } from 'services/api';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Loader } from 'components/Loader/Loader';
+import css from './Reviews.module.css';
+import toast, { Toaster } from 'react-hot-toast';
 // import { BASE_IMG_URL } from 'services/constants';
 
 const Reviwes = () => {
@@ -17,7 +19,7 @@ const Reviwes = () => {
         setReviews(movieReviews);
       } catch (error) {
         console.error(error);
-        error(`Sorry, ${error.message}! Try again)`);
+        toast.error(`Sorry, ${error.message}! Try again)`);
       } finally {
         setIsLoading(false);
       }
@@ -28,26 +30,26 @@ const Reviwes = () => {
 
   return (
     <div>
-      <h2>Reviews</h2>
-           {isLoading ? (
+      {isLoading ? (
         <Loader />
       ) : (
-      <ul>
-        {reviews.length !== 0 ? (
-          reviews.map(review => (
-            <li key={review.id}>
-              <p>
-                <span>Author: </span>
-                {review.author}
-              </p>
-              <p> {review.content}</p>
-            </li>
-          ))
-        ) : (
-          <p>Sorry, no reviews yet!</p>
-        )}
-          </ul>
+        <ul className={css.reviewsList}>
+          {reviews.length !== 0 ? (
+            reviews.map(review => (
+              <li className={css.reviewsItem} key={review.id}>
+                <p className={css.nameAuthor}>
+                  <span className={css.text}>Author: </span>
+                  {review.author}
+                </p>
+                <p className={css.reviewsDesc}> {review.content}</p>
+              </li>
+            ))
+          ) : (
+            <p className={css.errorMessage}>Sorry, no reviews yet!</p>
           )}
+        </ul>
+      )}
+      <Toaster />
     </div>
   );
 };
