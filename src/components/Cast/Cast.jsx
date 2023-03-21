@@ -36,7 +36,8 @@ const Cast = () => {
         <ul className={css.castList}>
           {cast.map(({ order, profile_path, name, character }) => (
             <li className={css.castItem} key={order}>
-              <img className={css.castImg}
+              <img
+                className={css.castImg}
                 src={profile_path ? BASE_IMG_URL + profile_path : placeholder}
                 alt={name}
                 width="200"
@@ -49,7 +50,7 @@ const Cast = () => {
           ))}
         </ul>
       )}
-        <Toaster />
+      <Toaster />
     </div>
   );
 };

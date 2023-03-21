@@ -19,7 +19,7 @@ const MovieDetails = () => {
     navigate(location.state.from);
   };
 
-    useEffect(() => {
+  useEffect(() => {
     setIsLoading(true);
     const fetchDetails = async () => {
       try {
@@ -38,64 +38,72 @@ const MovieDetails = () => {
     return null;
   }
   return (
-  <div className={css.detailsContainer}>
-    {isLoading ? (
-      <Loader />
-    ) : (
-      <div>
-        <button className={css.buttonGoBack} type="button" onClick={handleGoBack}>
-          Go back
-        </button>
-        <div className={css.moviesCard}>
-          <img
-            className={css.moviesImg}
-            src={details.poster_path ? BASE_IMG_URL + details.poster_path : placeholder}
-            alt={details.title}
-            width="400"
-          />
-          <div className={css.moviesDesc}>
-            <h2 className={css.moviesTitle}>
-              {details.title}
-              <span> {new Date(details.release_date).getFullYear()}</span>
-            </h2>
-            <p className={css.desc}>
-              User Score: {Math.round(details.vote_average * 10)} %
-            </p>
-            <h3 className={css.subtitle}>Overview</h3>
-            <p className={css.desc}>{details.overview}</p>
-            <h3 className={css.subtitle}>Genres</h3>
-            {details.genres && details.genres.map(genre => genre.name).join(', ')}
-          </div>
-          <div>
-            <ul className={css.detailsList}>
-              <li className={css.moviesItem}>
-                <Link
-                  className={css.moviesLink}
-                  to="cast"
-                  state={{ from: location.state.from }}
-                >
-                  Cast
-                </Link>
-              </li>
-              <li className={css.moviesItem}>
-                <Link
-                  className={css.moviesLink}
-                  to="reviews"
-                  state={{ from: location.state.from }}
-                >
-                  Reviews
-                </Link>
-              </li>
-            </ul>
+    <div className={css.detailsContainer}>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <div>
+          <button
+            className={css.buttonGoBack}
+            type="button"
+            onClick={handleGoBack}
+          >
+            Go back
+          </button>
+          <div className={css.moviesCard}>
+            <img
+              className={css.moviesImg}
+              src={
+                details.poster_path
+                  ? BASE_IMG_URL + details.poster_path
+                  : placeholder
+              }
+              alt={details.title}
+              width="400"
+            />
+            <div className={css.moviesDesc}>
+              <h2 className={css.moviesTitle}>
+                {details.title}
+                <span> {new Date(details.release_date).getFullYear()}</span>
+              </h2>
+              <p className={css.desc}>
+                User Score: {Math.round(details.vote_average * 10)} %
+              </p>
+              <h3 className={css.subtitle}>Overview</h3>
+              <p className={css.desc}>{details.overview}</p>
+              <h3 className={css.subtitle}>Genres</h3>
+              {details.genres &&
+                details.genres.map(genre => genre.name).join(', ')}
+            </div>
+            <div>
+              <ul className={css.detailsList}>
+                <li className={css.moviesItem}>
+                  <Link
+                    className={css.moviesLink}
+                    to="cast"
+                    state={{ from: location.state.from }}
+                  >
+                    Cast
+                  </Link>
+                </li>
+                <li className={css.moviesItem}>
+                  <Link
+                    className={css.moviesLink}
+                    to="reviews"
+                    state={{ from: location.state.from }}
+                  >
+                    Reviews
+                  </Link>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
-      </div>
       )}
-            <Outlet />
+      <Outlet />
       <Toaster />
-  </div>
-);
-
+    </div>
+  );
 };
 
 export default MovieDetails;
