@@ -15,9 +15,18 @@ const MovieDetails = () => {
   const { id } = useParams();
   const [isLoading, setIsLoading] = useState(false);
 
+  // const handleGoBack = () => {
+  //   navigate(location.state.from);
+  // };
+
   const handleGoBack = () => {
+  if (location.state) {
     navigate(location.state.from);
-  };
+  } else {
+    navigate('/');
+  }
+};
+
 
   useEffect(() => {
     setIsLoading(true);
