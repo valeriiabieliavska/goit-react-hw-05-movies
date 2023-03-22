@@ -90,7 +90,7 @@ const MovieDetails = () => {
                   <Link
                     className={css.moviesLink}
                     to="cast"
-                    state={{ from: handleGoBack }}
+                    state={{ from: {handleGoBack} }}
                   >
                     Cast
                   </Link>
@@ -99,7 +99,7 @@ const MovieDetails = () => {
                   <Link
                     className={css.moviesLink}
                     to="reviews"
-                    state={{ from: handleGoBack }}
+                    state={{ from: {handleGoBack} }}
                   >
                     Reviews
                   </Link>
