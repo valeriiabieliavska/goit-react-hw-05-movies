@@ -15,10 +15,17 @@ const MovieDetails = () => {
   const { id } = useParams();
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleGoBack = () => {
-    navigate(location.state.from);
-  };
+  // const handleGoBack = () => {
+  //   navigate(location.state.from);
+  // };
 
+  const handleGoBack = () => {
+  if (location.state) {
+    navigate(location.state.from);
+  } else {
+    navigate('/');
+  }
+};
 
 
   useEffect(() => {
@@ -83,7 +90,7 @@ const MovieDetails = () => {
                   <Link
                     className={css.moviesLink}
                     to="cast"
-                    state={{ from: location.state.from }}
+                    state={{ from: handleGoBack }}
                   >
                     Cast
                   </Link>
@@ -92,7 +99,7 @@ const MovieDetails = () => {
                   <Link
                     className={css.moviesLink}
                     to="reviews"
-                    state={{ from: location.state.from }}
+                    state={{ from: handleGoBack }}
                   >
                     Reviews
                   </Link>
